@@ -1,0 +1,2 @@
+DB:
+  dsn: root:mysql114514@tcp(43.139.136.169:3555)/fim?charset=utf8mb4&parseTime=True&loc=Local
