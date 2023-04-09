@@ -29,8 +29,11 @@ func init() {
 
 func ListenServer() {
 	logger.Log.Info("数据中心监听服务已启动")
-	select {
-	case c := <-HubConnCaching:
-		go serve.AcceptMessage(c.Conn, c.Device, c.Id, c.IP)
+	for {
+		select {
+		case c := <-HubConnCaching:
+			go serve.AcceptMessage(c.Conn, c.Device, c.Id, c.IP)
+		}
 	}
+	defer logger.Log.Info("数据中心监听服务已关闭")
 }

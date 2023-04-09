@@ -15,7 +15,7 @@ type Snowflake struct {
 }
 
 const (
-	epoch             = int64(1577808000000)                           // 设置起始时间(时间戳/毫秒)：2020-01-01 00:00:00，有效期69年
+	epoch             = int64(1577808000)                              // 设置起始时间(时间戳/毫秒)：2020-01-01 00:00:00，有效期69年
 	timestampBits     = uint(41)                                       // 时间戳占用位数
 	datacenteridBits  = uint(2)                                        // 数据中心id所占位数
 	workeridBits      = uint(7)                                        // 机器id所占位数
@@ -39,15 +39,15 @@ var Snow = Snowflake{
 
 func (s *Snowflake) NextVal() int64 {
 	s.Lock()
-	now := time.Now().UnixNano() / 1000000 // 转毫秒
+	now := time.Now().UnixNano() / 1000000000 // 转秒
 	if s.timestamp == now {
-		// 当同一时间戳（精度：毫秒）下多次生成id会增加序列号
+		// 当同一时间戳（精度：秒）下多次生成id会增加序列号
 		s.sequence = (s.sequence + 1) & sequenceMask
 		if s.sequence == 0 {
-			// 如果当前序列超出12bit长度，则需要等待下一毫秒
+			// 如果当前序列超出12bit长度，则需要等待下一秒
 			// 下一毫秒将使用sequence:0
 			for now <= s.timestamp {
-				now = time.Now().UnixNano() / 1000000
+				now = time.Now().UnixNano() / 1000000000
 			}
 		}
 	} else {

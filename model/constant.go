@@ -23,5 +23,6 @@ var (
 	NoticeTypeLoginDuplicate       = 1 // 重复登陆
 	NoticeTypeInvalidRequestFormat = 2 // 无效的请求格式
 	NoticeTypeLogOut               = 3 // 退出登录
-	NoticePullUnread               = 4 // 拉取未读队列
+	NoticePullUnread               = 4 // 拉取客户端未同步的消息队列
+	NoticeRemoveFriend             = 5 // 删除好友->消息记录清空
 )

@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS `messages`
     `file_url`         VARCHAR(255) COMMENT '适用于file类型',
     `from_user`        BIGINT       NOT NULL comment '用户id',
     `to_user`          BIGINT       NOT NULL comment '用户id',
-    `to_user_type`     VARCHAR(255) NOT NULL COMMENT '用户/群',
     `is_group_message` BOOL         NOT NULL COMMENT '是否来自群消息  如果User-A->Group-B，C in B, 服务器将消息进行更改 fromGroup = toUser toUser=C toUserType = user  isGroupMessage = true',
     `from_group`       BIGINT       NOT NULL COMMENT '群号',
     `ip`               CHAR(15)     NOT NULL,

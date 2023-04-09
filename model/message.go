@@ -15,7 +15,6 @@ type Message struct {
 	IsGroupMessage bool   `json:"isGroupMessage" gorm:"column:is_group_message"` // 是否来自群消息; ; 如果User-A->Group-B，C in B,; 服务器将消息进行更改; fromGroup = toUser; toUser=C; toUserType = user; isGroupMessage = true
 	Readed         bool   `json:"readed" gorm:"column:readed"`                   // 是否已读
 	ToUser         int64  `json:"toUser" gorm:"column:to_user"`                  // 接收者id
-	ToUserType     string `json:"toUserType" gorm:"column:to_user_type"`         // 接收者类型，用户/群
 	Type           int    `json:"type" gorm:"column:type"`                       // 消息类型，text=1,img=2,file=3,notice=4
 	Notice         int    `json:"notice" gorm:"column:notice"`                   // 通知类型 1：异地同端登录
 }
